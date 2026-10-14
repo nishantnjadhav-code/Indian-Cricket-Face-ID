@@ -35,6 +35,7 @@ st.info(
 )
 
 
+
 @st.cache_resource
 def load_artifacts():
     if not MODEL_PATH.exists():
@@ -47,9 +48,16 @@ def load_artifacts():
             f"Class names not found: {CLASSES_PATH}"
         )
 
-    # Compatibility workaround for older serialized initializer configs.
+    # Support older GlorotUniform configurations that contain
+    # input_axes and output_axes fields.
     class CompatibleGlorotUniform(keras.initializers.GlorotUniform):
-        def __init__(self, seed=None, input_axes=None, **kwargs):
+        def __init__(
+            self,
+            seed=None,
+            input_axes=None,
+            output_axes=None,
+            **kwargs,
+        ):
             super().__init__(seed=seed, **kwargs)
 
     model = keras.models.load_model(
