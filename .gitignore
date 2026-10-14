@@ -1,0 +1,21 @@
+
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Kaggle credentials and secrets
+kaggle.json
+.env
+.kaggle/
+
+# Dataset files
+dataset/raw/
+dataset/processed/
+
+# Generated model files
+models/*.keras
+models/*.h5
+
+# Generated evaluation outputs
+outputs/
